@@ -3,19 +3,20 @@ const port = 8000;
 
 const app = express();
 
+// Body Parser middleware
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+
+
 app.get('/', (req, res) => {
-    res.json({ message: 'Hello World!' });
+    res.json({ message: 'Welcome to Randomn ideas' });
 });
 
 
-app.get('/api/ideas', (req, res) => {
-    res.json({ success: true, data: [{ id: 1, title: 'Idea 1' }, { id: 2, title: 'Idea 2' }] });
-});
-
-app.get('/api/ideas/:id', (req, res) => {
-    const { id } = req.params;
-    res.json({ success: true, data: { id, title: `Idea ${id}` } });
-});
+const ideasRouter = require('./routes/ideas');
+app.use('/api/ideas', ideasRouter);
 
 
 app.listen(port, () => {
