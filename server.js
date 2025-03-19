@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.get('/', (req, res) => {
-    res.json({ message: 'Welcome to Randomn ideas' });
+    res.json({ message: 'Welcome to Random ideas' });
 });
 
 
